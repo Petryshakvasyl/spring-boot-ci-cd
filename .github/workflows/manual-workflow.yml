@@ -10,8 +10,8 @@ on:
         description: "This my txt var"
         type: choice
         options:
-          - ${{ github.repository }}/spring-boot-cicd
-          - ${{ github.organization }}/SimpleSpringBoot
+           - ${{ github.repository }}: spring-boot-cicd
+           - ${{ github.organization }}: SimpleSpringBoot
 #          - ... # Add additional repositories and labels
 #      repository:
 #        type: choice
