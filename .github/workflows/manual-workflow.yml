@@ -1,0 +1,31 @@
+name: Run manual workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      my-var:
+        description: "This my txt var"
+        default: 'tmp'
+      repository:
+        description: "This my txt var"
+        type: choice
+          - ${{ github.repository }}/spring-boot-cicd
+          - ${{ github.organization }}/SimpleSpringBoot
+          - ... # Add additional repositories and labels
+#      repository:
+#        type: choice
+#        options:
+#          # Use the GitHub API to list all your repositories.
+#          - {{ actions/checkout@v3 | github.repository_list | map((repo) => { return repo.name + ': ' + repo.description }) }}
+
+jobs:
+  job-1-checkout-repositories:
+    name: Job 1 - Checkout repositories
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job 1 - Step 1 - Print inputs
+        id: job-1-step-1
+        run: |
+          echo "My var = ${{ github.event.inputs.my-var }}"
+          echo "repository = ${{ github.event.inputs.repository }}"
+        shell: bash
