@@ -12,11 +12,14 @@ on:
         options:
            - spring-boot-cicd
            - SimpleSpringBoot
-#      repository:
+#      repository2:
 #        type: choice
 #        options:
 #          # Use the GitHub API to list all your repositories.
-#          - {{ actions/checkout@v3 | github.repository_list | map((repo) => { return repo.name + ': ' + repo.description }) }}
+#          - {{ github.repository_list }}
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
   job-1-checkout-repositories:
@@ -28,4 +31,8 @@ jobs:
         run: |
           echo "My var = ${{ github.event.inputs.my-var }}"
           echo "repository = ${{ github.event.inputs.repository }}"
+          echo "repository variable : $REPOSITORY_VAR"
+          echo "organization variable : $ORGANIZATION_VAR"
+          echo "overridden variable : $OVERRIDE_VAR"
+          echo "variable from shell environment : $env_var"
         shell: bash
