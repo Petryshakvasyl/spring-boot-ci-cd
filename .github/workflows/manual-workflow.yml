@@ -6,18 +6,17 @@ on:
       my-var:
         description: "This my txt var"
         default: 'tmp'
-#      repository:
-#        description: "This my txt var"
-#        type: choice
-#        options:
-#           - ${{ github.repository }}: spring-boot-cicd
-#           - ${{ github.organization }}: SimpleSpringBoot
-##          - ... # Add additional repositories and labels
       repository:
+        description: "Select the repository"
         type: choice
         options:
-          # Use the GitHub API to list all your repositories.
-          - {{ actions/checkout@v3 | github.repository_list | map((repo) => { return repo.name + ': ' + repo.description }) }}
+           - spring-boot-cicd
+           - SimpleSpringBoot
+#      repository:
+#        type: choice
+#        options:
+#          # Use the GitHub API to list all your repositories.
+#          - {{ actions/checkout@v3 | github.repository_list | map((repo) => { return repo.name + ': ' + repo.description }) }}
 
 jobs:
   job-1-checkout-repositories:
