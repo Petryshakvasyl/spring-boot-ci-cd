@@ -50,6 +50,6 @@ jobs:
       - name: Job 1 - Step 3 - Print outputs
         id: job-1-step-3
         run: |
-          echo "outputs from stet 2 = ${{ steps.job-1-step-2.outputs.github-branch-name }}"
-          echo "outputs from stet 2 = ${{ steps.job-1-step-2.outputs.github-branch-sha }}"
+          echo "sha for master branch  = ${{ github.ref == 'refs/heads/master' && github.sha }}"
+          echo "sha for configure-cicd branch  = ${{ github.ref == 'refs/heads/configure-cicd' && github.sha }}"
         shell: bash
