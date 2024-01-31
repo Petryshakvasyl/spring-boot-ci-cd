@@ -1,4 +1,4 @@
-name: Run manual workflow
+name: DB migration workflow
 
 on:
   workflow_dispatch:
@@ -16,7 +16,8 @@ on:
 #        type: choice
 #        options:
 #          # Use the GitHub API to list all your repositories.
-#          - {{ github.repository_list }}
+#          - {{ actions/checkout@v3 | github.repository_list | map((repo) => { return repo.name + ': ' + repo.description }) }}
+
 env:
   # Setting an environment variable with the value of a configuration variable
   env_var: ${{ vars.ENV_CONTEXT_VAR }}
@@ -25,6 +26,7 @@ jobs:
   job-1-checkout-repositories:
     name: Job 1 - Checkout repositories
     runs-on: ubuntu-latest
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
       - name: Job 1 - Step 1 - Print inputs
         id: job-1-step-1
@@ -35,4 +37,18 @@ jobs:
           echo "organization variable : $ORGANIZATION_VAR"
           echo "overridden variable : $OVERRIDE_VAR"
           echo "variable from shell environment : $env_var"
+          echo "repository list ${{ github.repository_list }}"
+        shell: bash
+
+      - name: Job 1 - Step 2 - Checkout repository
+        id: job-1-step-2
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+          path: relative-directory-for-repo
+
+      - name: Job 1 - Step 3 - Print outputs
+        id: job-1-step-3
+        run: |
+          echo "outputs from stet 2 = ${{ steps.job-1-step-2.outputs }}"
         shell: bash
