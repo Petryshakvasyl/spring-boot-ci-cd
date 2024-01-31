@@ -38,6 +38,7 @@ jobs:
           echo "overridden variable : $OVERRIDE_VAR"
           echo "variable from shell environment : $env_var"
           echo "repository list ${{ github.repository_list }}"
+          echo "current sha ${{ github.sha }}"
         shell: bash
 
       - name: Job 1 - Step 2 - Checkout repository
@@ -46,6 +47,10 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
           path: relative-directory-for-repo
+          run: |
+            echo "Checkout SHA: ${{ github.sha }}"
+          shell: bash
+
 
       - name: Job 1 - Step 3 - Print outputs
         id: job-1-step-3
