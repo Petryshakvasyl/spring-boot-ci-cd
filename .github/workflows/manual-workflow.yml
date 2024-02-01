@@ -76,7 +76,7 @@ jobs:
         id: job-1-step-4
         run: |
           echo "sha from checkout output  = ${{ steps.job-1-step-2.outputs.sha }}"
-          echo "Checkout SHA: ${{ steps.job-1-step-2.outputs.sha }}"
+          echo "Checkout SHA: ${{ steps.job-1-step-3.outputs.sha }}"
           echo "Checkout SHA: $SHA_FOR_BRANCH"
           echo "sha for master branch  = ${{ github.ref == 'refs/heads/master' && github.sha }}"
           echo "sha for configure-cicd branch  = ${{ github.ref == 'refs/heads/configure-cicd' && github.sha }}"
