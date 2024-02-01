@@ -81,3 +81,10 @@ jobs:
           echo "sha for master branch  = ${{ github.ref == 'refs/heads/master' && github.sha }}"
           echo "sha for configure-cicd branch  = ${{ github.ref == 'refs/heads/configure-cicd' && github.sha }}"
         shell: bash
+
+
+      - name: Job 1 - Step 5 - Print outputs 2
+        id: job-1-step-4
+        run: |
+         ls
+        shell: bash
