@@ -72,8 +72,8 @@ jobs:
           shell: bash
 
 
-      - name: Job 1 - Step 3 - Print outputs
-        id: job-1-step-3
+      - name: Job 1 - Step 4 - Print outputs
+        id: job-1-step-4
         run: |
           echo "sha from checkout output  = ${{ steps.job-1-step-2.outputs.sha }}"
           echo "Checkout SHA: ${{ steps.job-1-step-2.outputs.sha }}"
