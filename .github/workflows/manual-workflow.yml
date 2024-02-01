@@ -56,7 +56,7 @@ jobs:
         id: job-1-step-3
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.repository_owner }}/simpleExample
+          repository: ${{ github.repository_owner }}/simpleExample
           path: simple
           token: ${{ secrets.GH_PAT }}
           run: |
