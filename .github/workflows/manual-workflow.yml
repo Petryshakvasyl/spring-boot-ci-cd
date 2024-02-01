@@ -46,10 +46,29 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref_name }}
-          path: relative-directory-for-repo
+          path: rot-dir
           run: |
             echo "Checkout SHA: ${{ github.sha }}"
             echo "SHA_FOR_BRANCH=${{ steps.checkout.outputs.sha }}"
+          shell: bash
+
+      - name: Job 1 - Step 2 - Checkout another repository
+        id: job-1-step-3
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.repository_owner }}/simpleExample
+          path: simple
+          token: ${{secrets.GH_PAT}}
+          run: |
+            echo "Checkout SHA: ${{ github.sha }}"
+            echo "SHA_FOR_BRANCH=${{ steps.checkout.outputs.sha }}"
+            echo "pwd"  
+            pwd
+            echo "ls"
+            ls 
+            cd ../ 
+            echo root ls
+            ls
           shell: bash
 
 
